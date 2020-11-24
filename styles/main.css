@@ -1,3 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: pink;
+  height: 100vh;
+  margin: 0;
+}
+
+.grid-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+  height: 600px;
+  width: 600px;
+  background-color: #d1b271;
+}
+
+.grid div {
+  /* border: 1px solid lightgrey; */
+  flex-grow: 1;
+  height: 5%;
+  width: 5%; /*10% */
+  font-size: 12px; /* font-size added */
+}
+
+.grid div.homer {
+  background-image: url("../Images/pac.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.donuts {
+  background-color: yellow;
+  border-radius: 1000px;
+  background-image: url("../images/donut.png");
+}
+
+.superDonuts {
+  background-color: green;
+  border-radius: 10px;
+}
+
+.wall {
+  background-color: #424f46;
+}
+
+.ghostLair {
+  background-color: #d1b271;
+}
+
+.greenAlien {
+  background-color: green;
+  border-radius: 20px;
+  /* background-image: url("../Images/pac.png"); */
+}
+
+.blueAlien {
+  background-color: blue;
+  border-radius: 20px;
+  /* background-image: url("../Images/pac.png"); */
+}
+
+.orangeAlien {
+  background-color: orange;
+  border-radius: 20px;
+  /* background-image: url("../Images/pac.png"); */
+}
+
+.redAlien {
+  background-color: red;
+  border-radius: 20px;
+  /* background-image: url("../Images/pac.png"); */
+}
+
+.alien {
+}
+
+.scared-alien {
+  background-color: blue;
+}
+
+.blue {
+  background-color: blue;
 }
