@@ -93,3 +93,16 @@ body {
 .blue {
   background-color: blue;
 }
+
+.gate {
+  border-top: 3px solid black;
+}
+
+.tester {
+  background-color: blue;
+  text-align: center;
+  font-size: 30px;
+  line-height: 28px;
+  color: red;
+  font-weight: 900;
+}

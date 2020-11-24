@@ -5,7 +5,7 @@
 // !!!! Things To Do !!!! // 
 
 // * Make a gate to stop the aliens from going back in the lair
-// * When aliens get caught whilst scared add 200 points to the total
+//  When aliens get caught whilst scared add 200 points to the total // ! DONE
 // * when the unscared alien catches homer display a lost life, game over needs to be displayed on the screen after three lives lost 
 // * On the screen the whole time, the highest score needs to be displayed 
 // * 1UP the number of points in the game session needs to be saved 
@@ -22,7 +22,7 @@
 // Fix the bugs //
 
 // refactor code //
- //* add code in functions 
+//* add code in functions 
 
 
 
@@ -32,6 +32,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const homer = document.querySelector('.homer')
   let points = 0
+  let otherPoints = 0
   let youLose = false
   
   const width = 20 /* 10 */
@@ -48,7 +49,7 @@ function init() {
     1,8,8,8,8,1,8,8,8,8,1,8,8,8,1,8,8,8,8,1,
     1,1,1,1,8,1,1,1,1,8,1,8,1,1,1,8,1,1,1,1,
     1,1,1,1,8,1,8,8,8,8,8,8,8,8,8,8,1,1,1,1,
-    1,1,1,1,8,1,8,1,1,2,2,2,2,1,1,8,1,1,1,1,
+    1,1,1,1,8,1,8,1,1,5,5,5,5,1,1,8,1,1,1,1,
     1,1,1,1,8,1,8,1,1,2,2,2,2,1,1,8,1,1,1,1,
     8,8,8,8,8,1,8,1,1,2,2,2,2,1,1,8,8,8,8,8,
     1,1,1,1,8,1,8,1,1,1,1,1,1,1,1,8,1,1,1,1,
@@ -61,6 +62,8 @@ function init() {
     1,4,8,8,8,8,8,8,8,8,8,1,1,1,8,8,8,8,4,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   ]
+
+  // 5 for the gate
   
   const homerClass = 'homer'
   let homerPosition = 310
@@ -84,6 +87,8 @@ function init() {
         cells[i].style.backgroundColor = 'white'
       } else if (gridLayout[i] === 2) {
         cells[i].classList.add('alienLair')
+      } else if (gridLayout[i] === 5) {
+        cells[i].classList.add('gate')
       }
     }
     addHomer(startingPosition)
@@ -169,7 +174,7 @@ function init() {
       })
     }
 
-    console.log(points)
+    // console.log(points)
 
     addHomer(homerPosition)
   }
@@ -212,11 +217,23 @@ function init() {
   
 
     alien.timerId = setInterval(() => {
+
+      // if (!cells[alien.currentIndex - width].classList.contains('gate')) {
+      //   cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+      //   alien.currentIndex = alien.currentIndex + route
+      //   cells[alien.currentIndex].classList.add(alien.className, 'alien')
+      // }
       
-      if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien') ) {
-        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-        alien.currentIndex = alien.currentIndex + route
-        cells[alien.currentIndex].classList.add(alien.className, 'alien')
+      if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien')) {
+        if (!cells[alien.currentIndex + width].classList.contains('gate')) {
+          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+          alien.currentIndex = alien.currentIndex + route
+          cells[alien.currentIndex].classList.add(alien.className, 'alien')
+        } else {
+          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+          alien.currentIndex = alien.currentIndex + route
+          cells[alien.currentIndex].classList.add(alien.className, 'alien')
+        } 
       } else {
         route = routes[Math.floor(Math.random() * routes.length)]
       }
@@ -231,11 +248,13 @@ function init() {
 
       if (cells[homerPosition].classList.contains('alien') && alien.isScared) {
         //aliens.forEach(alien => {
-          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-          alien.currentIndex = alien.startIndex
-          cells[alien.currentIndex].classList.add(alien.className, 'alien')
+        otherPoints = otherPoints + 200
+        console.log('otherpoints', otherPoints)
+        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+        alien.currentIndex = alien.startIndex
+        cells[alien.currentIndex].classList.add(alien.className, 'alien') 
         //})
-        } //else if (cells[alien.currentIndex].classList.contains(homerClass) && alien.isScared) {
+      } //else if (cells[alien.currentIndex].classList.contains(homerClass) && alien.isScared) {
       //   //aliens.forEach(alien => {
       //     cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
       //     alien.currentIndex = alien.startIndex
@@ -275,6 +294,43 @@ function init() {
       clearInterval(alien.timerId)
     })
     document.removeEventListener('keyup', handleKeyUp)  
+
+    cells[246].classList.remove('donuts')
+    cells[246].classList.add('tester')
+    cells[246].innerHTML = 'G'
+
+    cells[247].classList.add('tester')
+    cells[247].classList.remove('donuts')
+    cells[247].innerHTML = 'A'
+
+    cells[248].classList.add('tester')
+    cells[248].classList.remove('donuts')
+    cells[248].innerHTML = 'M'
+
+    cells[249].classList.add('tester')
+    cells[249].classList.remove('donuts')
+    cells[249].innerHTML = 'E'
+
+    cells[251].classList.add('tester')
+    cells[251].classList.remove('donuts')
+    cells[251].innerHTML = 'O'
+
+    cells[252].classList.add('tester')
+    cells[252].classList.remove('donuts')
+    cells[252].innerHTML = 'V'
+
+    cells[253].classList.add('tester')
+    cells[253].classList.remove('donuts')
+    cells[253].innerHTML = 'E'
+
+    cells[254].classList.add('tester')
+    cells[254].classList.remove('donuts')
+    cells[254].innerHTML = 'R'
+
+    // const tester = document.querySelector('.tester')
+    // tester.innerHTML = 'G'
+
+    console.log(cells[246])
   }
   
   
