@@ -10,9 +10,15 @@ body {
 .bar {
   width: 600px;
   height: 75px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0 auto 0 auto;
   padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 23px;
+  background-color: #424f46;
+  color: #d1b271;
 }
 
 .grid-wrapper {
@@ -25,7 +31,7 @@ body {
 }
 
 .grid {
-  border: 2px solid red;
+  /* border: 2px solid red; debugging */
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;

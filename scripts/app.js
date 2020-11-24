@@ -34,6 +34,7 @@ function init() {
   let points = 0
   let otherPoints = 0
   let youLose = false
+  const levelScore = document.querySelector('.levelScore')
   
   const width = 20 /* 10 */
   const cellCount = width * width
@@ -164,6 +165,8 @@ function init() {
     if (cells[homerPosition].classList.contains('donuts')) {
       cells[homerPosition].classList.remove('donuts')
       points = points + 20
+      levelScore.innerHTML = points
+      // put it here 
     }
      
     // console.log(points)
