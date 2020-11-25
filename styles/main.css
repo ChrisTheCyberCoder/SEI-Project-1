@@ -21,6 +21,18 @@ body {
   color: #d1b271;
 }
 
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid red; */
+  width: 600px;
+  height: 50px;
+  background-color: #424f46;
+  color: #d1b271;
+  font-size: 23px;
+}
+
 .grid-wrapper {
   border: 2px solid green;
   height: 100vh;
@@ -33,7 +45,7 @@ body {
 .grid {
   /* border: 2px solid red; debugging */
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
   height: 100%;
@@ -120,6 +132,15 @@ body {
   text-align: center;
   font-size: 30px;
   line-height: 28px;
+  color: red;
+  font-weight: 900;
+}
+
+.ready {
+  background-color: blue;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
   color: red;
   font-weight: 900;
 }
