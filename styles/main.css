@@ -5,20 +5,29 @@
 body {
   height: 100vh;
   margin: 0;
+  background-image: url("../Images/homerdonut.png"),
+    url("../Images/eatingdonut.png");
+  background-position: 0% bottom, right bottom;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 770px 900px, 650px 700px;
+  background-color: #fed90f;
+  font-family: "Press Start 2P", cursive;
 }
 
 .bar {
   width: 600px;
   height: 75px;
-  /* border: 1px solid red; */
+  border: 3px solid black;
+  border-bottom: none;
   margin: 0 auto 0 auto;
   padding: 0;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: 23px;
-  background-color: #424f46;
-  color: #d1b271;
+  background-color: #70d1fe; /*#424f46 */
+  color: pink; /* #d1b271   */ /* #f1658c */
+  opacity: 0.9;
   border-radius: 7px 7px 0 0;
 }
 
@@ -29,10 +38,13 @@ body {
   /* border: 1px solid red; */
   width: 600px;
   height: 50px;
-  background-color: #424f46;
-  color: #d1b271;
+  background-color: #70d1fe; /*#424f46 */
+  color: pink; /* #d1b271   */ /* #f1658c */
   font-size: 23px;
   border-radius: 0 0 7px 7px;
+  border: 3px solid black;
+  border-top: none;
+  opacity: 0.9;
 }
 
 .grid-wrapper {
@@ -41,10 +53,13 @@ body {
   display: flex;
   justify-content: flex-end; /* center */
   align-items: center; /* center */
-  flex-direction: column;
-  background-image: url("../Images/homerdonut.png");
+  flex-direction: column; /* column */
+  /* background-image: url("../Images/homerdonut.png"),
+    url("../Images/fallinghomer.png"), url("../Images/eatingdonut.png");
+  background-position: left, left, right bottom;
   background-repeat: no-repeat;
   background-size: contain;
+  background-color: #fed90f; */
 }
 
 .grid {
@@ -57,7 +72,11 @@ body {
   justify-content: center;
   height: 600px;
   width: 600px;
-  background-color: #d1b271;
+  background-color: #70d1fe; /* #d1b271   */
+  border-right: 3px solid black;
+  border-left: 3px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .grid div {
@@ -91,8 +110,8 @@ body {
 }
 
 .wall {
-  background-color: #424f46;
-  border: 1.5px solid #fed90f;
+  background-color: #fed90f; /*#424f46 */ /* #424f46   */
+  border: 1.5px solid black; /* #fed90f */
   border-radius: 9px;
 }
 
@@ -151,23 +170,32 @@ body {
 }
 
 .gate {
-  border-top: 3px solid black;
+  border-top: 1.75px solid black;
 }
 
 .tester {
-  background-color: blue;
-  text-align: center;
-  font-size: 30px;
-  line-height: 28px;
-  color: red;
-  font-weight: 900;
-}
-
-.ready {
-  background-color: blue;
+  /* background-color: blue; */
   text-align: center;
   font-size: 30px;
   line-height: 30px;
-  color: red;
-  font-weight: 900;
+  color: #fed90f; /* #70d1fe */
+  font-weight: 3000;
+  font-family: "Press Start 2P", cursive;
+}
+
+.ready {
+  /* background-color: blue; */
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+  color: #fed90f; /* #70d1fe */
+  font-weight: 3000;
+  font-family: "Press Start 2P", cursive;
+}
+
+.fallingHomer {
+  align-self: flex-end;
+  /* justify-content: flex-end; */
+  border: 1px solid red;
+  width: 600px;
 }
