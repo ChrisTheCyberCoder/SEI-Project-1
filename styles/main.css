@@ -19,6 +19,7 @@ body {
   font-size: 23px;
   background-color: #424f46;
   color: #d1b271;
+  border-radius: 7px 7px 0 0;
 }
 
 .bottomBar {
@@ -31,15 +32,19 @@ body {
   background-color: #424f46;
   color: #d1b271;
   font-size: 23px;
+  border-radius: 0 0 7px 7px;
 }
 
 .grid-wrapper {
-  border: 2px solid green;
+  /* border: 2px solid green; debugging */
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end; /* center */
+  align-items: center; /* center */
   flex-direction: column;
+  background-image: url("../Images/homerdonut.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .grid {
@@ -64,24 +69,31 @@ body {
 }
 
 .grid div.homer {
-  background-image: url("../Images/pac.png");
+  background-image: url("../Images/homerhead.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .donuts {
-  background-color: yellow;
+  /* background-color: yellow; */
   border-radius: 1000px;
-  background-image: url("../images/donut.png");
+  background-image: url("../Images/donut.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .superDonuts {
-  background-color: green;
-  border-radius: 10px;
+  /* background-color: green;
+  border-radius: 10px; */
+  background-image: url("../Images/greendonut.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .wall {
   background-color: #424f46;
+  border: 1.5px solid #fed90f;
+  border-radius: 9px;
 }
 
 .ghostLair {
@@ -89,34 +101,49 @@ body {
 }
 
 .greenAlien {
-  background-color: green;
-  border-radius: 20px;
-  /* background-image: url("../Images/pac.png"); */
+  /* background-color: green; */
+  /* border-radius: 20px; */
+  /* color: green; */
+  background-image: url("../Images/moe.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .blueAlien {
-  background-color: blue;
-  border-radius: 20px;
+  /* background-color: blue;
+  border-radius: 20px; */
   /* background-image: url("../Images/pac.png"); */
+  background-image: url("../Images/mrburns.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .orangeAlien {
-  background-color: orange;
-  border-radius: 20px;
+  /* background-color: orange;
+  border-radius: 20px; */
   /* background-image: url("../Images/pac.png"); */
+  background-image: url("../Images/nelson.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .redAlien {
-  background-color: red;
-  border-radius: 20px;
+  /* background-color: red;
+  border-radius: 20px; */
   /* background-image: url("../Images/pac.png"); */
+  background-image: url("../Images/sideshow bob.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .alien {
 }
 
 .scared-alien {
-  background-color: blue;
+  /* background-color: blue; */
+  background-image: url("../Images/alien.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .blue {

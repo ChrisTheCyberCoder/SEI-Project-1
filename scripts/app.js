@@ -77,7 +77,7 @@ function init() {
   function createGrid(startingPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i/* i */
+      cell.textContent = null/* i */
       grid.appendChild(cell)
       cells.push(cell)
       cell.dataset.id = i
