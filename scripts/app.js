@@ -5,6 +5,7 @@
 // !!!! Things To Do !!!! // 
 
 //  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
+// Incorporate a you win in the game in innerhtml 
 //  When aliens get caught whilst scared add 200 points to the total // ! DONE
 //  when the unscared alien catches homer display a lost life, game over needs to be displayed on the screen after three lives lost // ! Incorporate lives
 // * On the screen the whole time, the highest score needs to be displayed 
@@ -13,6 +14,7 @@
 // * install the A* Algorithm from your other file, and install the nodes in the game
 // * Make sure the amount of lives is displayed all the time. 
 //  Add ready innerHTML before the game is played // ! Done
+// Improve the teleports so that the donuts get eaten // ! Done
 // * flash the screen after winning. 
 //  use time intervals so that homer keeps moving despite only one arrow pressed --> Just like Snake // ! Nearly Done
 // Aesthetics // 
@@ -75,7 +77,7 @@ function init() {
   function createGrid(startingPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = null/* i */
+      cell.textContent = i/* i */
       grid.appendChild(cell)
       cells.push(cell)
       cell.dataset.id = i
@@ -122,51 +124,48 @@ function init() {
     const verticalPosition = Math.floor(homerPosition / width)
 
     if (event.keyCode === 39) {
-
+      clearInterval(timerIdTurnLeft)
+      clearInterval(timerIdGoUp)
+      clearInterval(timerIdGoDown)      
       if (timerIdTurnRight) {
         clearInterval(timerIdTurnRight)
       } 
       timerIdTurnRight = setInterval(turnRight, 200)
     } else if (event.keyCode === 37) {
-
+      clearInterval(timerIdTurnRight)
+      clearInterval(timerIdGoDown)
+      clearInterval(timerIdGoUp)
       if (timerIdTurnLeft) {
         clearInterval(timerIdTurnLeft)
       } 
-
       timerIdTurnLeft = setInterval(turnLeft, 200)
-      
     } else if (event.keyCode === 38) {
-
+      clearInterval(timerIdGoDown)
+      clearInterval(timerIdTurnRight)
+      clearInterval(timerIdTurnLeft)
       if (timerIdGoUp) {
         clearInterval(timerIdGoUp)
       } 
-
-
-
       timerIdGoUp = setInterval(goUp, 200)
     } else if (event.keyCode === 40) {
-
+      clearInterval(timerIdTurnLeft)
+      clearInterval(timerIdTurnRight)
+      clearInterval(timerIdGoUp)
       if (timerIdGoDown) {
         clearInterval(timerIdGoDown)
       } 
-
-
       timerIdGoDown = setInterval(goDown, 200)
     }
 
     console.log(event.keyCode)
 
     // add the pellets in the code of turn right etc //! Done
-    // allow early turns by changing the control flow, i.e. saying that can turn right or left if something. 
+    // allow early turns by changing the control flow, i.e. saying that can turn right or left if something. //! Done
     // how to stop multiple intervals from being created //! Done
 
 
     function turnRight() {
-
-      //if event.keycode is equal to something else
-
       if (horizontalPosition < width - 1 && !cells[homerPosition + 1].classList.contains('wall')) {
-
         clearInterval(timerIdTurnLeft)
         clearInterval(timerIdGoUp)
         clearInterval(timerIdGoDown)
@@ -176,27 +175,34 @@ function init() {
         addHomer(homerPosition)
 
         eatDonuts()
-
       }
 
-      
+      if (homerPosition === 219) {
+        eatDonuts()
+        removeHomer(homerPosition)
+        homerPosition = 200
+        eatDonuts()
+      }
     }
 
     function turnLeft() {
       if (horizontalPosition > 0 && !cells[homerPosition - 1].classList.contains('wall')) {
-
         clearInterval(timerIdTurnRight)
         clearInterval(timerIdGoDown)
         clearInterval(timerIdGoUp)
-
 
         removeHomer(homerPosition)
         homerPosition--
         addHomer(homerPosition)
 
         eatDonuts()
+      }
 
-        
+      if (homerPosition === 200) {
+        eatDonuts()
+        removeHomer(homerPosition)
+        homerPosition = 219
+        eatDonuts()
       }
     }
 
@@ -207,89 +213,31 @@ function init() {
         clearInterval(timerIdTurnRight)
         clearInterval(timerIdTurnLeft)
 
-
-
         removeHomer(homerPosition)
         homerPosition -= width
         addHomer(homerPosition)
 
-       
-
         eatDonuts()
-
-
       }
     }
 
     function goDown() {
-      if (verticalPosition < width - 1) { // go down 
+      if (verticalPosition < width - 1) { 
         if (!cells[homerPosition + 20].classList.contains('wall') && !cells[homerPosition + 20].classList.contains('alienLair')) {
 
           clearInterval(timerIdTurnLeft)
           clearInterval(timerIdTurnRight)
           clearInterval(timerIdGoUp)
 
-
-
-
-
           removeHomer(homerPosition)
           homerPosition += width
           addHomer(homerPosition)
 
-          
           eatDonuts()
-
-
         } 
       }  
     }
 
-
-
-
-
-
-
-
-    // if (event.keyCode === 37) {
-    //   clearInterval(turnRight)
-    // }
-
-    
-    
-
-    // if (event.keyCode === 39) { //turn right
-    //   if (horizontalPosition < width - 1 && !cells[homerPosition + 1].classList.contains('wall')) {
-    //     homerPosition++
-    //   }
-
-    //   if (homerPosition === 219) {
-    //     homerPosition = 200
-    //   }
-    // } else if (event.keyCode === 37) { //turn left
-    //   if (horizontalPosition > 0 && !cells[homerPosition - 1].classList.contains('wall')) {
-    //     homerPosition--
-    //   }
-
-    //   if (homerPosition === 200) {
-    //     homerPosition = 219
-    //   }
-    // } else if (event.keyCode === 38) { //go up
-    //   if (verticalPosition > 0 && !cells[homerPosition - 20].classList.contains('wall')) {
-    //     homerPosition -= width
-    //   }
-    // } else if (event.keyCode === 40) {
-    //   if (verticalPosition < width - 1) { // go down 
-    //     if (!cells[homerPosition + 20].classList.contains('wall') && !cells[homerPosition + 20].classList.contains('alienLair')) {
-    //       homerPosition += width
-    //     } 
-    //   }  
-    // } else {
-    //   console.log('Please use the arrows on your keyboard')
-    // }
-
-    
 
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
