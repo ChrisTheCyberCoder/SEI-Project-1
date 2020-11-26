@@ -14,7 +14,7 @@
 // do the instructions after gameover 
 // fix the collision bug, make the collisison both ways 
 
-// * the number of fruits(beer) collected, make the beer random every 1 minute intervals, set the beer points to be 300 each
+
 // * install the A* Algorithm from your other file, and install the nodes in the game
 // * Make sure the amount of lives is displayed all the time. 
 
@@ -38,6 +38,7 @@ function init() {
   const homer = document.querySelector('.homer')
   const highScore = document.querySelector('.highScore')
   const levels = document.querySelector('.level')
+  const beerCollected = document.querySelector('.beerCollected')
   
   let points = 0
   let otherPoints = 0
@@ -322,6 +323,7 @@ function init() {
         otherPoints = otherPoints + 500
         totalScore = points + otherPoints
         levelScore.innerHTML = totalScore
+        beerCollected.classList.add('addBeer')
       }
     }
 
@@ -546,7 +548,7 @@ function init() {
     // const tester = document.querySelector('.tester')
     // tester.innerHTML = 'G'
 
-    console.log(cells[246])
+    // console.log(cells[246])
   }
 
   function youWinMessage() {
@@ -733,6 +735,7 @@ function init() {
     }
 
     runRandomBeerGenerator()
+    beerCollected.classList.remove('addBeer')
 
     createGrid() // will add the donuts anyway
     // reset the score again 

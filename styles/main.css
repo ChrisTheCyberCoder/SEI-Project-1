@@ -205,3 +205,9 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+.beerCollected {
+  width: 35px;
+  height: 37px;
+  margin-right: 4px;
+}
