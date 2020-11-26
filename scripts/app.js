@@ -4,7 +4,7 @@
 
 // !!!! Things To Do !!!! // 
 
-//  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
+
 // Fix the Aliens, you know what you have to do
 // fix the way the villains get you so that if you go into them aswell you lose, use the ||
 // incorporate ready 
@@ -110,6 +110,7 @@ function init() {
         cells[i].classList.add('alienLair')
       } else if (gridLayout[i] === 5) {
         cells[i].classList.add('gate')
+        cells[i].classList.add('alienLair')
       }
     }
     addHomer(startingPosition)
@@ -453,7 +454,7 @@ function init() {
       //   cells[alien.currentIndex].classList.add(alien.className, 'alien')
       // }
       
-      if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien')) {
+      /*if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien')) {
         if (!cells[alien.currentIndex + width].classList.contains('gate')) {
           cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
           alien.currentIndex = alien.currentIndex + route
@@ -463,6 +464,14 @@ function init() {
           alien.currentIndex = alien.currentIndex + route
           cells[alien.currentIndex].classList.add(alien.className, 'alien')
         } 
+      } else {
+        route = routes[Math.floor(Math.random() * routes.length)]
+      } */
+
+      if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien') ) {
+        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+        alien.currentIndex = alien.currentIndex + route
+        cells[alien.currentIndex].classList.add(alien.className, 'alien')
       } else {
         route = routes[Math.floor(Math.random() * routes.length)]
       } 
