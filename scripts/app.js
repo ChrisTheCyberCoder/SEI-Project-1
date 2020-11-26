@@ -142,18 +142,7 @@ function init() {
   }
 
   
-  // console.log(placeBeerInRandomLocations)
-  // console.log(randomBeerGenerator)
 
-  // function checkIfDonutIsPresent() {
-  //   if (!cells[randomBeerGenerator].classList.contains('donuts')) { //this shouldnt work, but it does, check this. 
-  //     placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
-  //   } else {
-  //     runRandomBeerGenerator()
-  //   }
-  // }
-
-  //setTimeout(runRandomBeerGenerator, 5000) // set to 20000 when product finished 
 
   
 
@@ -180,6 +169,8 @@ function init() {
   let timerIdGoDown 
 
   function handleKeyUp(event) {
+
+    
     removeHomer(homerPosition)
   
     const horizontalPosition = homerPosition % width
@@ -300,6 +291,8 @@ function init() {
       }  
     }
 
+    
+
 
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
@@ -355,9 +348,8 @@ function init() {
       }
     }
 
-    // console.log(points)
-
     addHomer(homerPosition)
+
   }
 
   //!! Next section
@@ -477,6 +469,9 @@ function init() {
       } 
 
       
+      
+
+
       if (alien.isScared) {
         cells[alien.currentIndex].classList.add('scared-alien')
         setTimeout(alienToNormal, 20000)
@@ -508,21 +503,23 @@ function init() {
       }
 
 
-      if (cells[alien.currentIndex].classList.contains(homerClass)) {
+      if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
         console.log('alien has got you')
         youLose = true
         youLost()
       } 
 
-    }, 2000) //alien.speed
+      
+
+    }, alien.speed) //alien.speed
 
     
 
   }
 
 
-
-  // check for a win
+  
+  
 
 
   function youLost() {
