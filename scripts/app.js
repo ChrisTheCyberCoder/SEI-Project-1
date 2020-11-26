@@ -5,6 +5,8 @@
 // !!!! Things To Do !!!! // 
 
 //  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
+// Fix the Aliens, you know what you have to do
+// incorporate ready 
 // Incorporate a you win in the game in innerhtml 
 //  When aliens get caught whilst scared add 200 points to the total // ! DONE
 // ! Incorporate lives
@@ -33,6 +35,7 @@ function init() {
   const grid = document.querySelector('.grid')
   const homer = document.querySelector('.homer')
   const highScore = document.querySelector('.highScore')
+  const levels = document.querySelector('.level')
   
   let points = 0
   let otherPoints = 0
@@ -43,6 +46,7 @@ function init() {
   let keyPressed = false
   let flashTheScreen = null
   let level = 1
+  
   
   const width = 20 /* 10 */
   const cellCount = width * width
@@ -101,6 +105,7 @@ function init() {
       }
     }
     addHomer(startingPosition)
+    levels.innerHTML = level
   }
   createGrid(homerPosition)
 
@@ -616,6 +621,8 @@ function init() {
     highScore.innerHTML = highscore
     points = 0 
     levelScore.innerHTML = points
+    level = (level + 1) - 1 //not sure why I had to do this formula but it kept adding it by two with just level = level + 1
+    levels.innerHTML = level 
     createGrid()
     // reset the score again 
      
