@@ -5,17 +5,11 @@
 // !!!! Things To Do !!!! // 
 
 
-
-
-
-
-//  When aliens get caught whilst scared add 200 points to the total 
-
 // * install the A* Algorithm from your other file, and install the nodes in the game
 // * Add audio files
-// * Add Media Queries
+
 // refactor code //
-//* add code in functions 
+
 
 
 
@@ -23,12 +17,12 @@ function init() {
 
   // * Variables
   const grid = document.querySelector('.grid')
-  const homer = document.querySelector('.homer')
+  const homer = document.querySelector('.homer') /* I plan to do something with this */
   const highScore = document.querySelector('.highScore')
   const levels = document.querySelector('.level')
   const beerCollected = document.querySelector('.beerCollected')
   const livesDom = document.querySelector('.lives')
-  console.log('live', livesDom)
+  
   const numberOfLives = document.querySelector('.numberOfLives')
   
   
@@ -39,13 +33,13 @@ function init() {
   let youLose = false
   const levelScore = document.querySelector('.levelScore')
   let lives = 2
-  let keyPressed = false
+  let keyPressed = false /* I plan to do something with this */
   let flashTheScreen = null
   let level = 1
   let loss = false
   
   
-  const width = 20 /* 10 */
+  const width = 20 
   const cellCount = width * width
   const cells = [] 
 
@@ -72,8 +66,6 @@ function init() {
     1,4,8,8,8,8,8,8,8,8,8,1,1,1,8,8,8,8,4,1,
     1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
   ]
-
-  // 5 for the gate
   
   const homerClass = 'homer'
   let homerPosition = 310 /* 310 */
@@ -109,15 +101,15 @@ function init() {
 
   const walls = document.querySelectorAll('.wall')
   livesDom.classList.add('homerLife')
-  console.log('life', livesDom)
+  
 
   numberOfLives.innerHTML = `X${lives}`
 
 
 
 
-  // console.log(walls)
-  const placeBeerInRandomLocations = [cells[316], cells[77], cells[247], cells[327]] //316, 77, 247, 327 // .classList.add('addBeer')
+  
+  const placeBeerInRandomLocations = [cells[316], cells[77], cells[247], cells[327]] 
   let randomBeerGenerator = null
 
   runRandomBeerGenerator()
@@ -125,7 +117,7 @@ function init() {
   function runRandomBeerGenerator() {
 
     randomBeerGenerator = Math.floor(Math.random() * placeBeerInRandomLocations.length)
-    // checkIfDonutIsPresent()
+    
     placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
 
   }
@@ -199,7 +191,7 @@ function init() {
       timerIdGoDown = setInterval(goDown, 160)
     }
 
-    console.log(event.keyCode)
+    
 
 
     function turnRight() {
@@ -286,19 +278,13 @@ function init() {
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
         alien.isScared = true
-        console.log(alien)
+        
         cells[homerPosition].classList.remove('superDonuts')
       })
       //note to self: include points but don't add this to the total level score, this is only for game completion as super donuts don't count. 
       points = points + 100
     }
     
-
-    // if (cells[homerPosition].classList.contains('alien')) {
-    //   console.log('alien has got you')
-    //   youLose = true
-    //   youLost()
-    // } 
 
     function eatDonuts() {
       if (cells[homerPosition].classList.contains('donuts')) {
@@ -310,12 +296,11 @@ function init() {
       }
     }
 
-    // if it contains the duff beer 
 
     function eatDuffBeer() {
       if (cells[homerPosition].classList.contains('addBeer')) {
         cells[homerPosition].classList.remove('addBeer')
-        //add to points
+        
         otherPoints = otherPoints + 500
         totalScore = points + otherPoints
         levelScore.innerHTML = totalScore
@@ -327,10 +312,10 @@ function init() {
 
 
      
-    // console.log(points)
+    
     function checkIfPointsToWinReached() {
       if (points === 3600) {
-        console.log('You Win!')
+        
         aliens.forEach(alien => {
           clearInterval(alien.timerId)
         })
@@ -347,7 +332,7 @@ function init() {
 
   //!! Next section
 
-  console.log('loss at beginning', loss)
+  
   
 
   class alien {
@@ -450,15 +435,7 @@ function init() {
         setTimeout(alienToNormal, 9000)
       }
 
-      // if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
-      //   if (alien.isScared) {
-      //     otherPoints = otherPoints + 200
-      //     console.log('otherpoints', otherPoints)
-      //     cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-      //     alien.currentIndex = alien.startIndex
-      //     cells[alien.currentIndex].classList.add(alien.className, 'alien') 
-      //   }
-      // }
+    
 
       aliens.forEach(alien => {
         if (cells[alien.currentIndex].classList.contains(homerClass)/* || cells[homerPosition].classList.contains('alien')*/) {
@@ -472,24 +449,6 @@ function init() {
       })
 
 
-
-    
-
-
-        // //aliens.forEach(alien => {
-        // otherPoints = otherPoints + 200
-        // console.log('otherpoints', otherPoints)
-        // cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-        // alien.currentIndex = alien.startIndex
-        // cells[alien.currentIndex].classList.add(alien.className, 'alien') 
-        // //})
-       //else if (cells[alien.currentIndex].classList.contains(homerClass) && alien.isScared) {
-      //   //aliens.forEach(alien => {
-      //     cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-      //     alien.currentIndex = alien.startIndex
-      //     cells[alien.currentIndex].classList.add(alien.className, 'alien')
-      //  //})
-      // }  
       
     
 
@@ -500,16 +459,10 @@ function init() {
 
       
 
-
-      // if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
-      //   console.log('alien has got you')
-      //   youLose = true
-      //   youLost()
-      // } 
-
       if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
         if (!alien.isScared) {
           youLose = true
+          
           youLost()
         }
       } 
@@ -528,20 +481,20 @@ function init() {
 
 
   function youLost() {
-    console.log('You lose!')
+    
 
     aliens.forEach(alien => {
       clearInterval(alien.timerId)
     })
     document.removeEventListener('keyup', handleKeyUp)  
 
-    // if lose, take the life away
+    
     
     lives = lives - 1
     numberOfLives.innerHTML = `X${lives}`
     
 
-    // livesDom.classList.remove('homerLife')
+    
 
     if (!lives < 1) {
       // beerCollected.classList.remove('addBeer')
@@ -630,8 +583,7 @@ function init() {
     clearInterval(timerIdTurnLeft)
     flashTheScreen = setInterval(flashScreen, 750)
 
-    //proceed to the next level 
-    //make ghosts slightly faster 
+   
   }
 
   function flashScreen() {
@@ -693,31 +645,26 @@ function init() {
 
     if (loss === true) {
       level = level
-      console.log('loss at end', loss)
+      
     } else {
       level = level + 1
-      // console.log(level)
+      
       aliens.forEach(alien => {
         alien.speed = alien.speed - 20
         loss = false
-        // movealien(alien)
+        
       })
     }
 
 
     
-    // innerHTML the level
+    
     
     document.addEventListener('keyup', handleKeyUp)
 
     removeYouWinMessage()
 
-    // aliens.forEach(alien => {
-    //   
-    //   cells[alien.startIndex].classList.add(alien.className, 'alien')
-    // })
-
-    // removeHomer(homerPosition)
+    
 
     cells[homerPosition].classList.remove(homerClass)
 
@@ -734,21 +681,19 @@ function init() {
 
 
 
-    //remove scared alien 
-    //put the character back in the lair
-    //put homer back in the starting position
+    
 
 
 
-    //add donuts and super donuts
+    
     highscore = highscore + points
     highScore.innerHTML = highscore
     points = 0 
     levelScore.innerHTML = points
-    level = (level + 1) - 1 //not sure why I had to do this formula but it kept adding it by two with just level = level + 1
+    level = (level + 1) - 1 //not sure why I had to do this formula but it kept adding it by two despite level = level + 1
     levels.innerHTML = level 
 
-    //do the add ready here again then create the grid set a timeout 
+    
 
     addReadyDisplay()
 
@@ -757,18 +702,18 @@ function init() {
     runRandomBeerGenerator()
     beerCollected.classList.remove('addBeer')
 
-    createGrid() // will add the donuts anyway
-    // reset the score again 
+    createGrid() 
+    
      
-    //add ready too 
+   
 
-    // runRandomBeerGenerator()
+    
     loss = false
   }
   
 
   // * Event listeners
-  document.addEventListener('keyup', handleKeyUp) /* keyup */
+  document.addEventListener('keyup', handleKeyUp) 
 
 
 }
