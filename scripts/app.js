@@ -104,12 +104,10 @@ function init() {
     placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
   }
 
-  // ! Add homer to grid 
   function addHomer(position) {
     cells[position].classList.add(homerClass) 
   }
 
-  // ! Remove homer from the grid
   function removeHomer(position) {
     cells[position].classList.remove(homerClass)
   }
