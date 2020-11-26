@@ -10,8 +10,6 @@
 // if gameover keep the highest score in the game, use control flow
 // Incorporate a you win in the game in innerhtml 
 //  When aliens get caught whilst scared add 200 points to the total 
-// ! Incorporate lives
-// do the instructions after gameover 
 // fix the collision bug, make the collisison both ways 
 
 
@@ -39,6 +37,10 @@ function init() {
   const highScore = document.querySelector('.highScore')
   const levels = document.querySelector('.level')
   const beerCollected = document.querySelector('.beerCollected')
+  const livesDom = document.querySelector('.lives')
+  console.log('live', livesDom)
+  const numberOfLives = document.querySelector('.numberOfLives')
+  
   
   let points = 0
   let otherPoints = 0
@@ -46,10 +48,11 @@ function init() {
   let highscore = 0
   let youLose = false
   const levelScore = document.querySelector('.levelScore')
-  const lives = 2
+  let lives = 2
   let keyPressed = false
   let flashTheScreen = null
   let level = 1
+  let loss = false
   
   
   const width = 20 /* 10 */
@@ -114,6 +117,14 @@ function init() {
   createGrid(homerPosition)
 
   const walls = document.querySelectorAll('.wall')
+  livesDom.classList.add('homerLife')
+  console.log('life', livesDom)
+
+  numberOfLives.innerHTML = `X${lives}`
+
+
+
+
   // console.log(walls)
   const placeBeerInRandomLocations = [cells[316], cells[77], cells[247], cells[327]] //316, 77, 247, 327 // .classList.add('addBeer')
   let randomBeerGenerator = null
@@ -348,6 +359,8 @@ function init() {
   }
 
   //!! Next section
+
+  console.log('loss at beginning', loss)
   
 
   class alien {
@@ -491,7 +504,7 @@ function init() {
         youLost()
       } 
 
-    }, 3000) //alien.speed
+    }, 2000) //alien.speed
 
     
 
@@ -510,6 +523,34 @@ function init() {
     })
     document.removeEventListener('keyup', handleKeyUp)  
 
+    // if lose, take the life away
+    
+    lives = lives - 1
+    numberOfLives.innerHTML = `X${lives}`
+    
+
+    // livesDom.classList.remove('homerLife')
+
+    if (!lives < 1) {
+      // beerCollected.classList.remove('addBeer')
+      loss = true
+      placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
+      newLevel()
+    } else {
+      livesDom.classList.remove('homerLife')
+      numberOfLives.innerHTML = ''
+      displayGameOver()
+    }
+
+    // clearInterval(timerIdGoDown) //don't think i need these, but check //! confirmed 
+    // clearInterval(timerIdGoUp)
+    // clearInterval(timerIdTurnRight)
+    // clearInterval(timerIdTurnLeft)
+
+    
+  }
+
+  function displayGameOver() {
     cells[246].classList.remove('donuts')
     cells[246].classList.add('tester')
     cells[246].innerHTML = 'G'
@@ -544,11 +585,6 @@ function init() {
     cells[254].classList.add('tester')
     cells[254].classList.remove('donuts')
     cells[254].innerHTML = 'R'
-
-    // const tester = document.querySelector('.tester')
-    // tester.innerHTML = 'G'
-
-    // console.log(cells[246])
   }
 
   function youWinMessage() {
@@ -642,14 +678,24 @@ function init() {
   
 
   function newLevel() {
-    level = level + 1
+
+    if (loss === true) {
+      level = level
+      console.log('loss at end', loss)
+    } else {
+      level = level + 1
+      // console.log(level)
+      aliens.forEach(alien => {
+        alien.speed = alien.speed - 20
+        loss = false
+        // movealien(alien)
+      })
+    }
+
+
+    
     // innerHTML the level
-    console.log(level)
-    aliens.forEach(alien => {
-      alien.speed = alien.speed - 20
-      // movealien(alien)
-      
-    })
+    
     document.addEventListener('keyup', handleKeyUp)
 
     removeYouWinMessage()
@@ -743,7 +789,7 @@ function init() {
     //add ready too 
 
     // runRandomBeerGenerator()
-    
+    loss = false
   }
   
 

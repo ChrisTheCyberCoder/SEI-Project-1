@@ -211,3 +211,25 @@ body {
   height: 37px;
   margin-right: 4px;
 }
+
+.lives {
+  /* add .grid div.homer */
+  width: 35px;
+  height: 37px;
+  margin-left: 4px;
+  /* border: 1px solid red; */
+}
+
+.homerLife {
+  background-image: url("../Images/homerhead.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.numberOfLives {
+  /* border: 1px solid red; */
+  margin-left: 40px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 35px;
+}
