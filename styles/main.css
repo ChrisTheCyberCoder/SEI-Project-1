@@ -199,3 +199,9 @@ body {
   border: 1px solid red;
   width: 600px;
 }
+
+.addBeer {
+  background-image: url("../Images/duffbeersingle.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

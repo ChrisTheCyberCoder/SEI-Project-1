@@ -41,6 +41,7 @@ function init() {
   
   let points = 0
   let otherPoints = 0
+  let totalScore = 0
   let highscore = 0
   let youLose = false
   const levelScore = document.querySelector('.levelScore')
@@ -113,6 +114,38 @@ function init() {
 
   const walls = document.querySelectorAll('.wall')
   // console.log(walls)
+  const placeBeerInRandomLocations = [cells[316], cells[77], cells[247], cells[327]] //316, 77, 247, 327 // .classList.add('addBeer')
+  let randomBeerGenerator = null
+
+  runRandomBeerGenerator()
+
+  function runRandomBeerGenerator() {
+
+    randomBeerGenerator = Math.floor(Math.random() * placeBeerInRandomLocations.length)
+    // checkIfDonutIsPresent()
+    placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
+
+  }
+
+  
+  // console.log(placeBeerInRandomLocations)
+  // console.log(randomBeerGenerator)
+
+  // function checkIfDonutIsPresent() {
+  //   if (!cells[randomBeerGenerator].classList.contains('donuts')) { //this shouldnt work, but it does, check this. 
+  //     placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
+  //   } else {
+  //     runRandomBeerGenerator()
+  //   }
+  // }
+
+  //setTimeout(runRandomBeerGenerator, 5000) // set to 20000 when product finished 
+
+  
+
+
+
+
 
 
   // ! Add homer to grid 
@@ -186,6 +219,7 @@ function init() {
         addHomer(homerPosition)
 
         eatDonuts()
+        eatDuffBeer()
       }
 
       if (homerPosition === 219) {
@@ -207,6 +241,7 @@ function init() {
         addHomer(homerPosition)
 
         eatDonuts()
+        eatDuffBeer()
       }
 
       if (homerPosition === 200) {
@@ -229,6 +264,7 @@ function init() {
         addHomer(homerPosition)
 
         eatDonuts()
+        eatDuffBeer()
       }
     }
 
@@ -245,6 +281,7 @@ function init() {
           addHomer(homerPosition)
 
           eatDonuts()
+          eatDuffBeer()
         } 
       }  
     }
@@ -270,10 +307,27 @@ function init() {
       if (cells[homerPosition].classList.contains('donuts')) {
         cells[homerPosition].classList.remove('donuts')
         points = points + 20
-        levelScore.innerHTML = points
+        totalScore = points + otherPoints
+        levelScore.innerHTML = totalScore
         checkIfPointsToWinReached()
       }
     }
+
+    // if it contains the duff beer 
+
+    function eatDuffBeer() {
+      if (cells[homerPosition].classList.contains('addBeer')) {
+        cells[homerPosition].classList.remove('addBeer')
+        //add to points
+        otherPoints = otherPoints + 500
+        totalScore = points + otherPoints
+        levelScore.innerHTML = totalScore
+      }
+    }
+
+
+
+
      
     // console.log(points)
     function checkIfPointsToWinReached() {
@@ -678,14 +732,15 @@ function init() {
       cells[253].innerHTML = ''
     }
 
-
+    runRandomBeerGenerator()
 
     createGrid() // will add the donuts anyway
     // reset the score again 
      
     //add ready too 
 
-
+    // runRandomBeerGenerator()
+    
   }
   
 
