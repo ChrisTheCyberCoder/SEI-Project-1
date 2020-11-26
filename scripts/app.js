@@ -7,11 +7,13 @@
 //  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
 // Fix the Aliens, you know what you have to do
 // incorporate ready 
+// if gameover keep the highest score in the game, use control flow
 // Incorporate a you win in the game in innerhtml 
-//  When aliens get caught whilst scared add 200 points to the total // ! DONE
+//  When aliens get caught whilst scared add 200 points to the total 
 // ! Incorporate lives
-// * On the screen the whole time, the highest score needs to be displayed 
-// * Incorporate levels innerHTML and levels that run automatically after a win 
+// do the instructions after gameover 
+// fix the collision bug, make the collisison both ways 
+
 // * the number of fruits(beer) collected, make the beer random every 1 minute intervals, set the beer points to be 300 each
 // * install the A* Algorithm from your other file, and install the nodes in the game
 // * Make sure the amount of lives is displayed all the time. 
@@ -493,7 +495,7 @@ function init() {
     console.log(cells[246])
   }
 
-  function youWin() {
+  function youWinMessage() {
     cells[247].classList.add('tester')
     cells[247].innerHTML = 'Y'
     cells[248].classList.add('tester')
@@ -509,6 +511,10 @@ function init() {
     cells[253].innerHTML = 'N'
     cells[254].classList.add('tester')
     cells[254].innerHTML = '!'
+  }
+
+  function youWin() {
+    youWinMessage()
 
     aliens.forEach(alien => {
       clearInterval(alien.timerId)
@@ -558,20 +564,8 @@ function init() {
     
     newLevel()
   }
-  
-  
 
-  function newLevel() {
-    level = level + 1
-    // innerHTML the level
-    console.log(level)
-    aliens.forEach(alien => {
-      alien.speed = alien.speed - 20
-      // movealien(alien)
-      
-    })
-    document.addEventListener('keyup', handleKeyUp)
-
+  function removeYouWinMessage() {
     cells[247].classList.remove('tester')
     cells[247].innerHTML = ''
     cells[248].classList.remove('tester')
@@ -587,6 +581,22 @@ function init() {
     cells[253].innerHTML = ''
     cells[254].classList.remove('tester')
     cells[254].innerHTML = ''
+  }
+  
+  
+
+  function newLevel() {
+    level = level + 1
+    // innerHTML the level
+    console.log(level)
+    aliens.forEach(alien => {
+      alien.speed = alien.speed - 20
+      // movealien(alien)
+      
+    })
+    document.addEventListener('keyup', handleKeyUp)
+
+    removeYouWinMessage()
 
     // aliens.forEach(alien => {
     //   
@@ -623,10 +633,58 @@ function init() {
     levelScore.innerHTML = points
     level = (level + 1) - 1 //not sure why I had to do this formula but it kept adding it by two with just level = level + 1
     levels.innerHTML = level 
-    createGrid()
+
+    //do the add ready here again then create the grid set a timeout 
+
+    cells[248].classList.add('ready')
+    cells[248].classList.remove('donuts')
+    cells[248].innerHTML = 'R'
+    cells[249].classList.add('ready')
+    cells[249].classList.remove('donuts')
+    cells[249].innerHTML = 'E'
+    cells[250].classList.add('ready')
+    cells[250].classList.remove('donuts')
+    cells[250].innerHTML = 'A'
+    cells[251].classList.add('ready')
+    cells[251].classList.remove('donuts')
+    cells[251].innerHTML = 'D'
+    cells[252].classList.add('ready')
+    cells[252].classList.remove('donuts')
+    cells[252].innerHTML = 'Y'
+    cells[253].classList.add('ready')
+    cells[253].classList.remove('donuts')
+    cells[253].innerHTML = '!'
+
+    setTimeout(removeTheReady, 5000)
+
+    function removeTheReady() {
+      cells[248].classList.remove('ready')
+      // cells[248].classList.add('donuts')
+      cells[248].innerHTML = ''
+      cells[249].classList.remove('ready')
+      // cells[249].classList.add('donuts')
+      cells[249].innerHTML = ''
+      cells[250].classList.remove('ready')
+      // cells[250].classList.add('donuts')
+      cells[250].innerHTML = ''
+      cells[251].classList.remove('ready')
+      // cells[251].classList.add('donuts')
+      cells[251].innerHTML = ''
+      cells[252].classList.remove('ready')
+      // cells[252].classList.add('donuts')
+      cells[252].innerHTML = ''
+      cells[253].classList.remove('ready')
+      // cells[253].classList.add('donuts')
+      cells[253].innerHTML = ''
+    }
+
+
+
+    createGrid() // will add the donuts anyway
     // reset the score again 
      
     //add ready too 
+
 
   }
   
