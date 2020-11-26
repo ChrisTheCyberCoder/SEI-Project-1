@@ -5,26 +5,15 @@
 // !!!! Things To Do !!!! // 
 
 
-// Fix the Aliens, you know what you have to do
-// fix the way the villains get you so that if you go into them aswell you lose, use the ||
-// incorporate ready 
-// if gameover keep the highest score in the game, use control flow
-// Incorporate a you win in the game in innerhtml 
-//  When aliens get caught whilst scared add 200 points to the total 
-// fix the collision bug, make the collisison both ways 
 
+
+
+
+//  When aliens get caught whilst scared add 200 points to the total 
 
 // * install the A* Algorithm from your other file, and install the nodes in the game
-// * Make sure the amount of lives is displayed all the time. 
-
-// Aesthetics // 
-
 // * Add audio files
 // * Add Media Queries
-
-
-// Fix the bugs //
-
 // refactor code //
 //* add code in functions 
 
@@ -183,7 +172,7 @@ function init() {
       if (timerIdTurnRight) {
         clearInterval(timerIdTurnRight)
       } 
-      timerIdTurnRight = setInterval(turnRight, 200)
+      timerIdTurnRight = setInterval(turnRight, 160) /* 200 */
     } else if (event.keyCode === 37) {
       clearInterval(timerIdTurnRight)
       clearInterval(timerIdGoDown)
@@ -191,7 +180,7 @@ function init() {
       if (timerIdTurnLeft) {
         clearInterval(timerIdTurnLeft)
       } 
-      timerIdTurnLeft = setInterval(turnLeft, 200)
+      timerIdTurnLeft = setInterval(turnLeft, 160)
     } else if (event.keyCode === 38) {
       clearInterval(timerIdGoDown)
       clearInterval(timerIdTurnRight)
@@ -199,7 +188,7 @@ function init() {
       if (timerIdGoUp) {
         clearInterval(timerIdGoUp)
       } 
-      timerIdGoUp = setInterval(goUp, 200)
+      timerIdGoUp = setInterval(goUp, 160)
     } else if (event.keyCode === 40) {
       clearInterval(timerIdTurnLeft)
       clearInterval(timerIdTurnRight)
@@ -207,7 +196,7 @@ function init() {
       if (timerIdGoDown) {
         clearInterval(timerIdGoDown)
       } 
-      timerIdGoDown = setInterval(goDown, 200)
+      timerIdGoDown = setInterval(goDown, 160)
     }
 
     console.log(event.keyCode)
@@ -293,13 +282,14 @@ function init() {
 
     
 
-
+    // ! If Homer eats the Super Donuts * DO NOT PUT IN FUNCION * Note to self: function circuit works better for this. 
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
         alien.isScared = true
         console.log(alien)
         cells[homerPosition].classList.remove('superDonuts')
       })
+      //note to self: include points but don't add this to the total level score, this is only for game completion as super donuts don't count. 
       points = points + 100
     }
     
@@ -348,6 +338,9 @@ function init() {
       }
     }
 
+    
+    
+
     addHomer(homerPosition)
 
   }
@@ -383,48 +376,43 @@ function init() {
 
 
 
-  setTimeout(alienAtStart, 3000) /* 3000 */
+  setTimeout(readyTheAliens, 3000) 
 
-  cells[248].classList.add('ready')
-  cells[248].classList.remove('donuts')
-  cells[248].innerHTML = 'R'
-  cells[249].classList.add('ready')
-  cells[249].classList.remove('donuts')
-  cells[249].innerHTML = 'E'
-  cells[250].classList.add('ready')
-  cells[250].classList.remove('donuts')
-  cells[250].innerHTML = 'A'
-  cells[251].classList.add('ready')
-  cells[251].classList.remove('donuts')
-  cells[251].innerHTML = 'D'
-  cells[252].classList.add('ready')
-  cells[252].classList.remove('donuts')
-  cells[252].innerHTML = 'Y'
-  cells[253].classList.add('ready')
-  cells[253].classList.remove('donuts')
-  cells[253].innerHTML = '!'
+  addReadyDisplay()
 
-  function alienAtStart() {
-    
+  function addReadyDisplay() {
+    cells[248].classList.add('ready')
+    cells[248].innerHTML = 'R'
+    cells[249].classList.add('ready')
+    cells[249].innerHTML = 'E'
+    cells[250].classList.add('ready')
+    cells[250].innerHTML = 'A'
+    cells[251].classList.add('ready')
+    cells[251].innerHTML = 'D'
+    cells[252].classList.add('ready')
+    cells[252].innerHTML = 'Y'
+    cells[253].classList.add('ready')
+    cells[253].innerHTML = '!'
+  }
+
+  function removeReadyDisplay() {
+    cells[248].classList.remove('ready')
+    cells[248].innerHTML = ''
+    cells[249].classList.remove('ready')
+    cells[249].innerHTML = ''
+    cells[250].classList.remove('ready')
+    cells[250].innerHTML = ''
+    cells[251].classList.remove('ready')
+    cells[251].innerHTML = ''
+    cells[252].classList.remove('ready')
+    cells[252].innerHTML = ''
+    cells[253].classList.remove('ready')
+    cells[253].innerHTML = ''
+  }
+
+  function readyTheAliens() {
     aliens.forEach(alien => {
-      cells[248].classList.remove('ready')
-      cells[248].classList.add('donuts')
-      cells[248].innerHTML = ''
-      cells[249].classList.remove('ready')
-      cells[249].classList.add('donuts')
-      cells[249].innerHTML = ''
-      cells[250].classList.remove('ready')
-      cells[250].classList.add('donuts')
-      cells[250].innerHTML = ''
-      cells[251].classList.remove('ready')
-      cells[251].classList.add('donuts')
-      cells[251].innerHTML = ''
-      cells[252].classList.remove('ready')
-      cells[252].classList.add('donuts')
-      cells[252].innerHTML = ''
-      cells[253].classList.remove('ready')
-      cells[253].classList.add('donuts')
-      cells[253].innerHTML = ''
+      removeReadyDisplay()
       movealien(alien)
     })
   }
@@ -440,26 +428,8 @@ function init() {
 
       
 
-      // if (!cells[alien.currentIndex - width].classList.contains('gate')) {
-      //   cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-      //   alien.currentIndex = alien.currentIndex + route
-      //   cells[alien.currentIndex].classList.add(alien.className, 'alien')
-      // }
       
-      /*if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien')) {
-        if (!cells[alien.currentIndex + width].classList.contains('gate')) {
-          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-          alien.currentIndex = alien.currentIndex + route
-          cells[alien.currentIndex].classList.add(alien.className, 'alien')
-        } else {
-          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-          alien.currentIndex = alien.currentIndex + route
-          cells[alien.currentIndex].classList.add(alien.className, 'alien')
-        } 
-      } else {
-        route = routes[Math.floor(Math.random() * routes.length)]
-      } */
-
+      
       if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien') ) {
         cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
         alien.currentIndex = alien.currentIndex + route
@@ -467,27 +437,53 @@ function init() {
       } else {
         route = routes[Math.floor(Math.random() * routes.length)]
       } 
-
       
+
+
+    
       
 
 
       if (alien.isScared) {
         cells[alien.currentIndex].classList.add('scared-alien')
-        setTimeout(alienToNormal, 20000)
+        clearTimeout(alienToNormal)
+        setTimeout(alienToNormal, 9000)
       }
 
+      // if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
+      //   if (alien.isScared) {
+      //     otherPoints = otherPoints + 200
+      //     console.log('otherpoints', otherPoints)
+      //     cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+      //     alien.currentIndex = alien.startIndex
+      //     cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+      //   }
+      // }
+
+      aliens.forEach(alien => {
+        if (cells[alien.currentIndex].classList.contains(homerClass)/* || cells[homerPosition].classList.contains('alien')*/) {
+          if (alien.isScared) {
+            otherPoints = otherPoints + 200
+            cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+            alien.currentIndex = alien.startIndex
+            cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+          }
+        }
+      })
 
 
-      if (cells[homerPosition].classList.contains('alien') && alien.isScared) {
-        //aliens.forEach(alien => {
-        otherPoints = otherPoints + 200
-        console.log('otherpoints', otherPoints)
-        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
-        alien.currentIndex = alien.startIndex
-        cells[alien.currentIndex].classList.add(alien.className, 'alien') 
-        //})
-      } //else if (cells[alien.currentIndex].classList.contains(homerClass) && alien.isScared) {
+
+    
+
+
+        // //aliens.forEach(alien => {
+        // otherPoints = otherPoints + 200
+        // console.log('otherpoints', otherPoints)
+        // cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+        // alien.currentIndex = alien.startIndex
+        // cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+        // //})
+       //else if (cells[alien.currentIndex].classList.contains(homerClass) && alien.isScared) {
       //   //aliens.forEach(alien => {
       //     cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
       //     alien.currentIndex = alien.startIndex
@@ -502,11 +498,20 @@ function init() {
         alien.isScared = false
       }
 
+      
+
+
+      // if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
+      //   console.log('alien has got you')
+      //   youLose = true
+      //   youLost()
+      // } 
 
       if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
-        console.log('alien has got you')
-        youLose = true
-        youLost()
+        if (!alien.isScared) {
+          youLose = true
+          youLost()
+        }
       } 
 
       
@@ -745,47 +750,9 @@ function init() {
 
     //do the add ready here again then create the grid set a timeout 
 
-    cells[248].classList.add('ready')
-    cells[248].classList.remove('donuts')
-    cells[248].innerHTML = 'R'
-    cells[249].classList.add('ready')
-    cells[249].classList.remove('donuts')
-    cells[249].innerHTML = 'E'
-    cells[250].classList.add('ready')
-    cells[250].classList.remove('donuts')
-    cells[250].innerHTML = 'A'
-    cells[251].classList.add('ready')
-    cells[251].classList.remove('donuts')
-    cells[251].innerHTML = 'D'
-    cells[252].classList.add('ready')
-    cells[252].classList.remove('donuts')
-    cells[252].innerHTML = 'Y'
-    cells[253].classList.add('ready')
-    cells[253].classList.remove('donuts')
-    cells[253].innerHTML = '!'
+    addReadyDisplay()
 
-    setTimeout(removeTheReady, 5000)
-
-    function removeTheReady() {
-      cells[248].classList.remove('ready')
-      // cells[248].classList.add('donuts')
-      cells[248].innerHTML = ''
-      cells[249].classList.remove('ready')
-      // cells[249].classList.add('donuts')
-      cells[249].innerHTML = ''
-      cells[250].classList.remove('ready')
-      // cells[250].classList.add('donuts')
-      cells[250].innerHTML = ''
-      cells[251].classList.remove('ready')
-      // cells[251].classList.add('donuts')
-      cells[251].innerHTML = ''
-      cells[252].classList.remove('ready')
-      // cells[252].classList.add('donuts')
-      cells[252].innerHTML = ''
-      cells[253].classList.remove('ready')
-      // cells[253].classList.add('donuts')
-      cells[253].innerHTML = ''
-    }
+    setTimeout(removeReadyDisplay, 2000)
 
     runRandomBeerGenerator()
     beerCollected.classList.remove('addBeer')
