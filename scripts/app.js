@@ -7,19 +7,18 @@
 //  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
 // Incorporate a you win in the game in innerhtml 
 //  When aliens get caught whilst scared add 200 points to the total // ! DONE
-//  when the unscared alien catches homer display a lost life, game over needs to be displayed on the screen after three lives lost // ! Incorporate lives
+// ! Incorporate lives
 // * On the screen the whole time, the highest score needs to be displayed 
-//  1UP the number of points in the game session needs to be saved // ! Done
+// * Incorporate levels innerHTML and levels that run automatically after a win 
 // * the number of fruits(beer) collected, make the beer random every 1 minute intervals, set the beer points to be 300 each
 // * install the A* Algorithm from your other file, and install the nodes in the game
 // * Make sure the amount of lives is displayed all the time. 
-//  Add ready innerHTML before the game is played // ! Done
-// Improve the teleports so that the donuts get eaten // ! Done
-// * flash the screen after winning. 
-//  use time intervals so that homer keeps moving despite only one arrow pressed --> Just like Snake // ! Nearly Done
+
 // Aesthetics // 
-//* CSS into a simpsons theme 
+
 // * Add audio files
+// * Add Media Queries
+
 
 // Fix the bugs //
 
@@ -33,12 +32,15 @@ function init() {
   // * Variables
   const grid = document.querySelector('.grid')
   const homer = document.querySelector('.homer')
+  
   let points = 0
   let otherPoints = 0
   let youLose = false
   const levelScore = document.querySelector('.levelScore')
   const lives = 2
   let keyPressed = false
+  let flashTheScreen = null
+  let level = 1
   
   const width = 20 /* 10 */
   const cellCount = width * width
@@ -100,6 +102,10 @@ function init() {
   }
   createGrid(homerPosition)
 
+  const walls = document.querySelectorAll('.wall')
+  // console.log(walls)
+
+
   // ! Add homer to grid 
   function addHomer(position) {
     cells[position].classList.add(homerClass) 
@@ -158,10 +164,6 @@ function init() {
     }
 
     console.log(event.keyCode)
-
-    // add the pellets in the code of turn right etc //! Done
-    // allow early turns by changing the control flow, i.e. saying that can turn right or left if something. //! Done
-    // how to stop multiple intervals from being created //! Done
 
 
     function turnRight() {
@@ -260,15 +262,19 @@ function init() {
         cells[homerPosition].classList.remove('donuts')
         points = points + 20
         levelScore.innerHTML = points
+        checkIfPointsToWinReached()
       }
     }
      
     // console.log(points)
-    if (points === 3600) {
-      console.log('You Win!')
-      aliens.forEach(alien => {
-        clearInterval(alien.timerId)
-      })
+    function checkIfPointsToWinReached() {
+      if (points === 3600) {
+        console.log('You Win!')
+        aliens.forEach(alien => {
+          clearInterval(alien.timerId)
+        })
+        youWin()
+      }
     }
 
     // console.log(points)
@@ -291,10 +297,10 @@ function init() {
   }
 
   const aliens = [
-    new alien('greenAlien', 189, 250),
-    new alien('blueAlien', 209, 400),
-    new alien('orangeAlien', 192, 250),
-    new alien('redAlien', 212, 250)
+    new alien('greenAlien', 189, 250), /* 250 */
+    new alien('blueAlien', 209, 400), /* 400 */
+    new alien('orangeAlien', 192, 250), /* 250 */
+    new alien('redAlien', 212, 250) /* 250 */
   ]
 
 
@@ -305,7 +311,7 @@ function init() {
 
 
 
-  setTimeout(alienAtStart, 3000)
+  setTimeout(alienAtStart, 3000) /* 3000 */
 
   cells[248].classList.add('ready')
   cells[248].classList.remove('donuts')
@@ -360,6 +366,8 @@ function init() {
 
     alien.timerId = setInterval(() => {
 
+      
+
       // if (!cells[alien.currentIndex - width].classList.contains('gate')) {
       //   cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
       //   alien.currentIndex = alien.currentIndex + route
@@ -378,7 +386,7 @@ function init() {
         } 
       } else {
         route = routes[Math.floor(Math.random() * routes.length)]
-      }
+      } 
 
       
       if (alien.isScared) {
@@ -418,7 +426,7 @@ function init() {
         youLost()
       } 
 
-    }, alien.speed) //alien.speed
+    }, 3000) //alien.speed
 
     
 
@@ -477,7 +485,129 @@ function init() {
 
     console.log(cells[246])
   }
+
+  function youWin() {
+    cells[247].classList.add('tester')
+    cells[247].innerHTML = 'Y'
+    cells[248].classList.add('tester')
+    cells[248].innerHTML = 'O'
+    cells[249].classList.add('tester')
+    cells[249].innerHTML = 'U'
+
+    cells[251].classList.add('tester')
+    cells[251].innerHTML = 'W'
+    cells[252].classList.add('tester')
+    cells[252].innerHTML = 'I'
+    cells[253].classList.add('tester')
+    cells[253].innerHTML = 'N'
+    cells[254].classList.add('tester')
+    cells[254].innerHTML = '!'
+
+    aliens.forEach(alien => {
+      clearInterval(alien.timerId)
+    })
+    document.removeEventListener('keyup', handleKeyUp)  
+    clearInterval(timerIdGoDown)
+    clearInterval(timerIdGoUp)
+    clearInterval(timerIdTurnRight)
+    clearInterval(timerIdTurnLeft)
+    flashTheScreen = setInterval(flashScreen, 750)
+
+    //proceed to the next level 
+    //make ghosts slightly faster 
+  }
+
+  function flashScreen() {
+    setTimeout(switchToRed, 500)
+    function switchToRed() {
+      walls.forEach(wall => {
+        wall.style.backgroundColor = 'red'
+      })
+    }
+
+    setTimeout(switchToBlue, 1000)
+    function switchToBlue() {
+      walls.forEach(wall => {
+        wall.style.backgroundColor = 'blue'
+      })
+    }
+
+    setTimeout(switchToRedAgain, 1500)
+    function switchToRedAgain() {
+      walls.forEach(wall => {
+        wall.style.backgroundColor = 'red'
+      })
+    }
+
+    setTimeout(switchToBlueAgain, 2000)
+    function switchToBlueAgain() {
+      walls.forEach(wall => {
+        wall.style.backgroundColor = '#fed90f'
+      })
+    }
+
+    clearInterval(flashTheScreen)
+
+    
+    newLevel()
+  }
   
+  
+
+  function newLevel() {
+    level = level + 1
+    // innerHTML the level
+    console.log(level)
+    aliens.forEach(alien => {
+      alien.speed = alien.speed - 20
+      // movealien(alien)
+      
+    })
+    document.addEventListener('keyup', handleKeyUp)
+
+    cells[247].classList.remove('tester')
+    cells[247].innerHTML = ''
+    cells[248].classList.remove('tester')
+    cells[248].innerHTML = ''
+    cells[249].classList.remove('tester')
+    cells[249].innerHTML = ''
+
+    cells[251].classList.remove('tester')
+    cells[251].innerHTML = ''
+    cells[252].classList.remove('tester')
+    cells[252].innerHTML = ''
+    cells[253].classList.remove('tester')
+    cells[253].innerHTML = ''
+    cells[254].classList.remove('tester')
+    cells[254].innerHTML = ''
+
+    // aliens.forEach(alien => {
+    //   
+    //   cells[alien.startIndex].classList.add(alien.className, 'alien')
+    // })
+
+    // removeHomer(homerPosition)
+
+    cells[homerPosition].classList.remove(homerClass)
+
+    homerPosition = 310
+
+    cells[homerPosition].classList.add(homerClass)
+
+    aliens.forEach(alien => {
+      cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+      alien.currentIndex = alien.startIndex
+      cells[alien.startIndex].classList.add(alien.className, 'alien', 'scared-alien')
+      movealien(alien)
+    })
+
+
+
+    //remove scared alien 
+    //put the character back in the lair
+    //put homer back in the starting position
+
+  }
   
 
   // * Event listeners
