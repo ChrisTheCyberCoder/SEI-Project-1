@@ -3,7 +3,6 @@
 
 // !!!! Things To Do !!!! // 
 // * install the A* Algorithm from your other file, and install the nodes in the game
-// * Add audio files
 // refactor code //
 
 function init() {
@@ -89,6 +88,9 @@ function init() {
     levels.innerHTML = level
   }
   createGrid(homerPosition)
+
+  audio.src = 'Sounds/thatsanicedonut.wav'
+  audio.play()
 
   const walls = document.querySelectorAll('.wall')
   livesDom.classList.add('homerLife')
@@ -241,7 +243,8 @@ function init() {
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
         alien.isScared = true
-        
+        audio.src = 'Sounds/comeonidareyou.wav'
+        audio.play()
         cells[homerPosition].classList.remove('superDonuts')
       })
       //note to self: include points but don't add this to the total level score, this is only for game completion as super donuts don't count. 
@@ -250,6 +253,8 @@ function init() {
     
     function eatDonuts() {
       if (cells[homerPosition].classList.contains('donuts')) {
+        // audio.src = 'Sounds/eat2.wav' /* ruins the sound of the others */
+        // audio.play()
         cells[homerPosition].classList.remove('donuts')
         points = points + 20
         totalScore = points + otherPoints
@@ -260,6 +265,8 @@ function init() {
 
     function eatDuffBeer() {
       if (cells[homerPosition].classList.contains('addBeer')) {
+        audio.src = 'Sounds/beer.wav'
+        audio.play()
         cells[homerPosition].classList.remove('addBeer')
         otherPoints = otherPoints + 500
         totalScore = points + otherPoints
@@ -384,6 +391,8 @@ function init() {
 
       if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition].classList.contains('alien')) {
         if (!alien.isScared) {
+          audio.src = 'Sounds/doh1.wav'
+          audio.play()
           youLose = true
           youLost()
         }
@@ -399,6 +408,8 @@ function init() {
     document.removeEventListener('keyup', handleKeyUp)  
     lives = lives - 1
     numberOfLives.innerHTML = `X${lives}`
+
+    
     
     if (!lives < 1) {
       // beerCollected.classList.remove('addBeer')
@@ -418,6 +429,10 @@ function init() {
   }
 
   function displayGameOver() {
+
+    audio.src = 'Sounds/sellsoulforadonut.wav'
+    audio.play()
+
     cells[246].classList.remove('donuts')
     cells[246].classList.add('tester')
     cells[246].innerHTML = 'G'
