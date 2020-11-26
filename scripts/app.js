@@ -32,9 +32,11 @@ function init() {
   // * Variables
   const grid = document.querySelector('.grid')
   const homer = document.querySelector('.homer')
+  const highScore = document.querySelector('.highScore')
   
   let points = 0
   let otherPoints = 0
+  let highscore = 0
   let youLose = false
   const levelScore = document.querySelector('.levelScore')
   const lives = 2
@@ -606,6 +608,18 @@ function init() {
     //remove scared alien 
     //put the character back in the lair
     //put homer back in the starting position
+
+
+
+    //add donuts and super donuts
+    highscore = highscore + points
+    highScore.innerHTML = highscore
+    points = 0 
+    levelScore.innerHTML = points
+    createGrid()
+    // reset the score again 
+     
+    //add ready too 
 
   }
   
