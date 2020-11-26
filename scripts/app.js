@@ -6,6 +6,7 @@
 
 //  Make a gate to stop the aliens from going back in the lair //! Nearly done but need to fix the code
 // Fix the Aliens, you know what you have to do
+// fix the way the villains get you so that if you go into them aswell you lose, use the ||
 // incorporate ready 
 // if gameover keep the highest score in the game, use control flow
 // Incorporate a you win in the game in innerhtml 
