@@ -1,8 +1,8 @@
-
 //! Simpsons themed pacman 
 
 // !!!! Things To Do !!!! // 
 // * install the A* Algorithm from your other file, and install the nodes in the game
+// * Do a menu bar 
 // refactor code //
 
 function init() {
@@ -14,8 +14,9 @@ function init() {
   const levels = document.querySelector('.level')
   const beerCollected = document.querySelector('.beerCollected')
   const livesDom = document.querySelector('.lives')
-  
   const numberOfLives = document.querySelector('.numberOfLives')
+  const audioThemeSong = document.querySelector('#audioThemeSong')
+
   
   let points = 0
   let otherPoints = 0
@@ -113,6 +114,9 @@ function init() {
   function removeHomer(position) {
     cells[position].classList.remove(homerClass)
   }
+
+  audioThemeSong.src = 'Sounds/simpsons theme song.wav'
+  audioThemeSong.play()
 
   // * Move homer
 
@@ -397,7 +401,7 @@ function init() {
           youLost()
         }
       } 
-    }, alien.speed) 
+    }, alien.speed) /* alien.speed */
   }
 
   function youLost() {
@@ -467,6 +471,9 @@ function init() {
     cells[254].classList.add('tester')
     cells[254].classList.remove('donuts')
     cells[254].innerHTML = 'R'
+
+    audioThemeSong.src = ''
+    audio.play()
   }
 
   function youWinMessage() {
