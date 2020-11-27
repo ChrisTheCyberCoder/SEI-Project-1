@@ -16,7 +16,8 @@ function init() {
   const livesDom = document.querySelector('.lives')
   const numberOfLives = document.querySelector('.numberOfLives')
   const audioThemeSong = document.querySelector('#audioThemeSong')
-
+  const playAgain = document.querySelector('.playAgain')
+  
   
   let points = 0
   let otherPoints = 0
@@ -474,6 +475,8 @@ function init() {
 
     audioThemeSong.src = ''
     audio.play()
+
+    playAgain.style.display = 'block'
   }
 
   function youWinMessage() {
@@ -598,6 +601,11 @@ function init() {
   
   // * Event listeners
   document.addEventListener('keyup', handleKeyUp) 
+  playAgain.addEventListener('click', reloadThePage)
+
+  function reloadThePage() {
+    window.location.reload()
+  }
 }
 
 window.addEventListener('DOMContentLoaded', init)
