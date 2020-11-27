@@ -560,7 +560,7 @@ function init() {
   
   function newLevel() {
     if (loss === true) {
-      level = level
+      level = level + 0
     } else {
       level = level + 1
       aliens.forEach(alien => {
@@ -586,7 +586,6 @@ function init() {
     highScore.innerHTML = highscore
     points = 0 
     levelScore.innerHTML = points
-    level = (level + 1) - 1 //not sure why I had to do this formula but it kept adding it by two despite level = level + 1
     levels.innerHTML = level 
     addReadyDisplay()
     setTimeout(removeReadyDisplay, 2000)
