@@ -117,6 +117,15 @@ function init() {
   }
 
   audioThemeSong.src = 'Sounds/simpsons theme song.wav'
+  audioThemeSong.loop = true
+
+  /* Use code below for those heathens using internet explorer */ 
+
+  /* audioThemeSong.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+    }, false); */
+
   audioThemeSong.play()
 
   // * Move homer
