@@ -398,6 +398,16 @@ function init() {
         }
       })
 
+      
+      if ( cells[homerPosition].classList.contains('alien')) {
+        if (alien.isScared) {
+          otherPoints = otherPoints + 200
+          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+          alien.currentIndex = alien.startIndex
+          cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+        }
+      }
+      
       function alienToNormal() {
         cells[alien.currentIndex].classList.remove('scared-alien')
         alien.isScared = false
@@ -423,8 +433,6 @@ function init() {
     lives = lives - 1
     numberOfLives.innerHTML = `X${lives}`
 
-    
-    
     if (!lives < 1) {
       // beerCollected.classList.remove('addBeer')
       loss = true
@@ -573,8 +581,9 @@ function init() {
   function newLevel() {
     if (loss === true) {
       level = level + 0
+      loss = false
     } else {
-      level = level + 1
+      level = level + level
       aliens.forEach(alien => {
         alien.speed = alien.speed - 20
         loss = false
