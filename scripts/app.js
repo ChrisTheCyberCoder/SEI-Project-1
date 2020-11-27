@@ -384,7 +384,7 @@ function init() {
       if (alien.isScared) {
         cells[alien.currentIndex].classList.add('scared-alien')
         clearTimeout(alienToNormal)
-        setTimeout(alienToNormal, 9000)
+        setTimeout(alienToNormal, 7000)
       }
 
       aliens.forEach(alien => {
