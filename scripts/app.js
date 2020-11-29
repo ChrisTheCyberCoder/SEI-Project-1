@@ -148,7 +148,7 @@ function init() {
       if (timerIdTurnRight) {
         clearInterval(timerIdTurnRight)
       } 
-      timerIdTurnRight = setInterval(turnRight, 160) /* 200 */
+      timerIdTurnRight = setInterval(turnRight, 110) /* 200 */
     } else if (event.keyCode === 37) {
       clearInterval(timerIdTurnRight)
       clearInterval(timerIdGoDown)
@@ -156,7 +156,7 @@ function init() {
       if (timerIdTurnLeft) {
         clearInterval(timerIdTurnLeft)
       } 
-      timerIdTurnLeft = setInterval(turnLeft, 160)
+      timerIdTurnLeft = setInterval(turnLeft, 110)
     } else if (event.keyCode === 38) {
       clearInterval(timerIdGoDown)
       clearInterval(timerIdTurnRight)
@@ -164,7 +164,7 @@ function init() {
       if (timerIdGoUp) {
         clearInterval(timerIdGoUp)
       } 
-      timerIdGoUp = setInterval(goUp, 160)
+      timerIdGoUp = setInterval(goUp, 110)
     } else if (event.keyCode === 40) {
       clearInterval(timerIdTurnLeft)
       clearInterval(timerIdTurnRight)
@@ -172,7 +172,7 @@ function init() {
       if (timerIdGoDown) {
         clearInterval(timerIdGoDown)
       } 
-      timerIdGoDown = setInterval(goDown, 160)
+      timerIdGoDown = setInterval(goDown, 110)
     }
 
     function turnRight() {
@@ -314,10 +314,10 @@ function init() {
   }
 
   const aliens = [
-    new alien('greenAlien', 189, 250), /* 250 */
-    new alien('blueAlien', 209, 400), /* 400 */
-    new alien('orangeAlien', 192, 250), /* 250 */
-    new alien('redAlien', 212, 250) /* 250 */
+    new alien('greenAlien', 189, 150), /* 250 */
+    new alien('blueAlien', 209, 300), /* 400 */
+    new alien('orangeAlien', 192, 150), /* 250 */
+    new alien('redAlien', 212, 150) /* 250 */
   ]
 
   aliens.forEach(alien => {

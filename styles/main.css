@@ -87,7 +87,7 @@ body {
   background-image: url("../Images/homerhead.png");
   background-repeat: no-repeat;
   background-size: contain;
-  transition: 0.1s;
+  /* transition: 0.1s; */
 }
 
 .donuts {
