@@ -95,7 +95,8 @@ body {
   border-radius: 1000px;
   background-image: url("../Images/donut.png");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center;
+  background-size: 70% 70%; /* contain */
 }
 
 .superDonuts {

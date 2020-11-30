@@ -384,11 +384,11 @@ function init() {
       if (alien.isScared) {
         cells[alien.currentIndex].classList.add('scared-alien')
         clearTimeout(alienToNormal)
-        setTimeout(alienToNormal, 7000)
+        setTimeout(alienToNormal, 40000) /* 7000 */
       }
 
       aliens.forEach(alien => {
-        if (cells[alien.currentIndex].classList.contains(homerClass)/* || cells[homerPosition].classList.contains('alien')*/) {
+        if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition] === cells[alien.currentIndex]) {
           if (alien.isScared) {
             otherPoints = otherPoints + 200
             cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
@@ -399,7 +399,7 @@ function init() {
       })
 
       
-      if ( cells[homerPosition].classList.contains('alien')) {
+      if ( cells[homerPosition].classList.contains('alien') || cells[alien.currentIndex] === cells[homerPosition.currentIndex]) {
         if (alien.isScared) {
           otherPoints = otherPoints + 200
           cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
