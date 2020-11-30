@@ -9,7 +9,7 @@ function init() {
 
   // * Variables
   const grid = document.querySelector('.grid')
-  const homer = document.querySelector('.homer') /* I plan to do something with this */
+  const homer = document.querySelector('homer') /* I plan to do something with this */
   const highScore = document.querySelector('.highScore')
   const levels = document.querySelector('.level')
   const beerCollected = document.querySelector('.beerCollected')
@@ -246,7 +246,7 @@ function init() {
           removeHomer(homerPosition)
           homerPosition += width
           addHomer(homerPosition)
-
+          
           eatDonuts()
           eatDuffBeer()
         } 
@@ -384,7 +384,7 @@ function init() {
       if (alien.isScared) {
         cells[alien.currentIndex].classList.add('scared-alien')
         clearTimeout(alienToNormal)
-        setTimeout(alienToNormal, 40000) /* 7000 */
+        setTimeout(alienToNormal, 7000) /* 7000 */
       }
 
       aliens.forEach(alien => {
