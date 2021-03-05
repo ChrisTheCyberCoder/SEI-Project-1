@@ -108,12 +108,14 @@ function init() {
     placeBeerInRandomLocations[randomBeerGenerator].classList.add('addBeer')
   }
 
-  function addHomer(position) {
+  function addHomer(position, direction) {
     cells[position].classList.add(homerClass) 
+    cells[position].classList.add(direction) 
   }
 
-  function removeHomer(position) {
+  function removeHomer(position, direction) {
     cells[position].classList.remove(homerClass)
+    cells[position].classList.remove(direction)
   }
 
   audioThemeSong.src = 'Sounds/simpsons theme song.wav'
@@ -135,8 +137,10 @@ function init() {
   let timerIdGoUp
   let timerIdGoDown 
 
+  let homerDirection = null
+
   function handleKeyUp(event) {
-    removeHomer(homerPosition)
+    removeHomer(homerPosition, homerDirection)
   
     const horizontalPosition = homerPosition % width
     const verticalPosition = Math.floor(homerPosition / width)
@@ -148,7 +152,7 @@ function init() {
       if (timerIdTurnRight) {
         clearInterval(timerIdTurnRight)
       } 
-      timerIdTurnRight = setInterval(turnRight, 110) /* 200 */
+      timerIdTurnRight = setInterval(turnRight, 180) /* 200 */
     } else if (event.keyCode === 37) {
       clearInterval(timerIdTurnRight)
       clearInterval(timerIdGoDown)
@@ -156,7 +160,7 @@ function init() {
       if (timerIdTurnLeft) {
         clearInterval(timerIdTurnLeft)
       } 
-      timerIdTurnLeft = setInterval(turnLeft, 110)
+      timerIdTurnLeft = setInterval(turnLeft, 180)
     } else if (event.keyCode === 38) {
       clearInterval(timerIdGoDown)
       clearInterval(timerIdTurnRight)
@@ -164,7 +168,7 @@ function init() {
       if (timerIdGoUp) {
         clearInterval(timerIdGoUp)
       } 
-      timerIdGoUp = setInterval(goUp, 110)
+      timerIdGoUp = setInterval(goUp, 180)
     } else if (event.keyCode === 40) {
       clearInterval(timerIdTurnLeft)
       clearInterval(timerIdTurnRight)
@@ -172,7 +176,7 @@ function init() {
       if (timerIdGoDown) {
         clearInterval(timerIdGoDown)
       } 
-      timerIdGoDown = setInterval(goDown, 110)
+      timerIdGoDown = setInterval(goDown, 180)
     }
 
     function turnRight() {
@@ -181,9 +185,10 @@ function init() {
         clearInterval(timerIdGoUp)
         clearInterval(timerIdGoDown)
 
-        removeHomer(homerPosition)
+        homerDirection = 'right'
+        removeHomer(homerPosition, 'right')
         homerPosition++
-        addHomer(homerPosition)
+        addHomer(homerPosition, 'right')
 
         eatDonuts()
         eatDuffBeer()
@@ -203,9 +208,10 @@ function init() {
         clearInterval(timerIdGoDown)
         clearInterval(timerIdGoUp)
 
-        removeHomer(homerPosition)
+        homerDirection = 'left'
+        removeHomer(homerPosition, 'left')
         homerPosition--
-        addHomer(homerPosition)
+        addHomer(homerPosition, 'left')
 
         eatDonuts()
         eatDuffBeer()
@@ -226,9 +232,10 @@ function init() {
         clearInterval(timerIdTurnRight)
         clearInterval(timerIdTurnLeft)
 
-        removeHomer(homerPosition)
+        homerDirection = 'up'
+        removeHomer(homerPosition, 'up')
         homerPosition -= width
-        addHomer(homerPosition)
+        addHomer(homerPosition, 'up')
 
         eatDonuts()
         eatDuffBeer()
@@ -243,9 +250,10 @@ function init() {
           clearInterval(timerIdTurnRight)
           clearInterval(timerIdGoUp)
 
-          removeHomer(homerPosition)
+          homerDirection = 'down'
+          removeHomer(homerPosition, 'down')
           homerPosition += width
-          addHomer(homerPosition)
+          addHomer(homerPosition, 'down')
           
           eatDonuts()
           eatDuffBeer()
@@ -299,7 +307,7 @@ function init() {
       }
     }
 
-    addHomer(homerPosition)
+    addHomer(homerPosition, homerDirection)
   }
 
   class alien {
@@ -314,15 +322,16 @@ function init() {
   }
 
   const aliens = [
-    new alien('greenAlien', 189, 150), /* 250 */
-    new alien('blueAlien', 209, 300), /* 400 */
-    new alien('orangeAlien', 192, 150), /* 250 */
-    new alien('redAlien', 212, 150) /* 250 */
+    new alien('greenAlien', 189, 180), /* 250 */
+    new alien('blueAlien', 209, 180), /* 400 */
+    new alien('orangeAlien', 192, 180), /* 250 */
+    new alien('redAlien', 212, 180) /* 250 */
   ]
 
   aliens.forEach(alien => {
     cells[alien.currentIndex].classList.add(alien.className)
     cells[alien.currentIndex].classList.add('alien') 
+    // cells[alien.currentIndex].classList.add('smooth_alien') 
   })
 
   setTimeout(readyTheAliens, 3000) 
@@ -370,13 +379,30 @@ function init() {
 
     const routes = [-1, +1, width, -width] //routes of the alien 
     let route = routes[Math.floor(Math.random() * routes.length)] //random generator 
+    let result = null
 
     alien.timerId = setInterval(() => {
 
       if (!cells[alien.currentIndex + route].classList.contains('wall') && !cells[alien.currentIndex + route].classList.contains('alien') ) {
-        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+        if (route === -1) {
+          cells[alien.currentIndex].classList.remove('left')
+          result = 'left'
+        }
+        if (route === +1) {
+          cells[alien.currentIndex].classList.remove('right')
+          result = 'right'
+        }
+        if (route === width) {
+          cells[alien.currentIndex].classList.remove('down')
+          result = 'down'
+        }
+        if (route === -width) {
+          cells[alien.currentIndex].classList.remove('up')
+          result = 'up'
+        }
+        cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien', result)
         alien.currentIndex = alien.currentIndex + route
-        cells[alien.currentIndex].classList.add(alien.className, 'alien')
+        cells[alien.currentIndex].classList.add(alien.className, 'alien', result)
       } else {
         route = routes[Math.floor(Math.random() * routes.length)]
       } 
@@ -391,9 +417,9 @@ function init() {
         if (cells[alien.currentIndex].classList.contains(homerClass) || cells[homerPosition] === cells[alien.currentIndex]) {
           if (alien.isScared) {
             otherPoints = otherPoints + 200
-            cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+            cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien', result)
             alien.currentIndex = alien.startIndex
-            cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+            cells[alien.currentIndex].classList.add(alien.className, 'alien', result) 
           }
         }
       })
@@ -402,9 +428,9 @@ function init() {
       if ( cells[homerPosition].classList.contains('alien') || cells[alien.currentIndex] === cells[homerPosition.currentIndex]) {
         if (alien.isScared) {
           otherPoints = otherPoints + 200
-          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien')
+          cells[alien.currentIndex].classList.remove(alien.className, 'alien', 'scared-alien', result)
           alien.currentIndex = alien.startIndex
-          cells[alien.currentIndex].classList.add(alien.className, 'alien') 
+          cells[alien.currentIndex].classList.add(alien.className, 'alien', result) 
         }
       }
       

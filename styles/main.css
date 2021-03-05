@@ -64,7 +64,7 @@ body {
   box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  /* height: 100%; */
   justify-content: center;
   height: 600px;
   width: 600px;
@@ -87,8 +87,82 @@ body {
   background-image: url("../Images/homerhead.png");
   background-repeat: no-repeat;
   background-size: contain;
-  /* transition: 0.1s; */
-  transform: rotate(0deg);
+  
+  /* transform: rotate(0deg); */
+  
+}
+
+
+
+.down {
+  animation: smoothMoveDown 0.22s;
+  animation-direction: normal;
+  
+}
+
+@keyframes smoothMoveDown {
+  0% {
+    transform: rotate(90deg) scale(1, 1) translateX(-20px);
+    
+  }
+
+  100% {
+    transform: rotate(90deg) scale(1, 1) translateX(0px);
+  
+  }
+}
+
+.left {
+  animation: smoothMoveLeft 0.22s;
+  animation-direction: normal;
+  
+}
+
+@keyframes smoothMoveLeft {
+  0% {
+    transform: scaleX(-1) scaleY(1) scale(1, 1) translateX(-20px);
+    
+  }
+  100% {
+    transform: scaleX(-1) scaleY(1) scale(1, 1) translateX(0px);
+    
+  }
+}
+
+.up {
+  animation: smoothMoveUp 0.22s;
+  animation-direction: normal;
+  
+}
+
+@keyframes smoothMoveUp {
+  0% {
+    transform: rotate(270deg) scale(1, 1) translateX(-20px);
+    
+  }
+  
+  100% {
+    transform: rotate(270deg) scale(1, 1) translateX(0px);
+    
+  }
+}
+
+
+.right {
+  animation: smoothMoveRight 0.22s;
+  animation-direction: normal;
+  
+}
+
+@keyframes smoothMoveRight {
+  0% {
+    transform: rotate(0deg) scale(1, 1) translateX(-20px);
+   
+  }
+  100% {
+    transform: rotate(0deg) scale(1, 1) translateX(0px);
+    
+  }
 }
 
 .donuts {
@@ -97,7 +171,7 @@ body {
   background-image: url("../Images/donut.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 70% 70%; /* contain */
+  background-size: 45% 45%; /* contain */ /* 70 70 */
 }
 
 .superDonuts {
@@ -155,6 +229,7 @@ body {
 }
 
 .alien {
+  /* z-index: 10; */
 }
 
 .scared-alien {
