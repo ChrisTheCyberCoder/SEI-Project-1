@@ -74,7 +74,11 @@ To ease the transition between each cell, and to prevent a lagging type of motio
 ## Layout
 
 <p align="center">
-  <img src="images/homerman_grid.png" width="425"/>
+  <img src="Images/Screenshot 2021-04-09 at 01.08.17.png" width="600"/>
+</p>
+
+<p align="center">
+  <img src="Images/Screenshot 2021-04-09 at 01.09.01.png" width="425"/>
 </p>
 
 The number of squares in the grid was 20 X 20 cells. Avoiding having to manually hard-code each cell with a class, which would have taken 400 lines of code, I decided to create an array, gridLayout, of which holds 5 unique numbers: "8" refers to the class of "wall", "4" refers to the class of "donuts", 0 refers to the classlist of "superDonuts", "2" refers to "alienLair" (aliens/villains lair), "5" refers to gate (the gate of the alien lair). The grid was then created using this gridLayout array, using the following code:
@@ -159,7 +163,7 @@ For every level, a beer would appear randomly in 4 locations, consuming this bee
 
 To break away from the original, I decided to theme this version of pacman simpson themed. All items, are in the Simpsons cartoons, the famous duff beer, pink and green donuts. The player's character is Homer simpson himself. The villains trying to capture Homer are the Simpson Villains: Mr Burns, Moe, Nelson, Sideshow Bob. The aliens, after Homer eats a green donut, also exist in the Simpsons. 
 
-## Villains
+## Villains 
 
 Villians move in a similar way to the previous mentioned, "movement". Originally, I ran out of time to add the AI required to the villians, so they all initially, during scared, and unscared states, moved randomly. Just after the end of the project, I added the AI required on the villains. They are in three states, scared, unscared and scatter. 
 
@@ -170,6 +174,8 @@ When the villians are not chasing, they are in a scatter state. They occupy and 
 Once Homer (Pac-Man) enters an area/zone that they are guarding, the villains go into "chase" mode, this is the mode where the villains chase pacman, given pacman's location. 
 
 When moving, the villains take into consideration the boundaries that they cannot infiltrate: The walls, each-other. This essentially stops them from colliding into each-other and going through obstacles they're not supposed to go through. 
+
+It must be noted that the AI mentioned above was incorporated after the deadline as I ran out of time. However, the link to Homerman 2.0 with the AI included would be posted on my portfolio, and available in my github. 
 
 ## Collision Detection
 
