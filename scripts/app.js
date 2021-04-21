@@ -1,15 +1,9 @@
-//! Simpsons themed pacman 
-
-// !!!! Things To Do !!!! // 
-// * install the A* Algorithm from your other file, and install the nodes in the game
-// * Do a menu bar 
-// refactor code //
 
 function init() {
 
   // * Variables
   const grid = document.querySelector('.grid')
-  const homer = document.querySelector('homer') /* I plan to do something with this */
+  // const homer = document.querySelector('homer') 
   const highScore = document.querySelector('.highScore')
   const levels = document.querySelector('.level')
   const beerCollected = document.querySelector('.beerCollected')
@@ -23,10 +17,10 @@ function init() {
   let otherPoints = 0
   let totalScore = 0
   let highscore = 0
-  let youLose = false /* Says it's not used, but it is, and will once the function runs, console proves it */ 
+  // eslint-disable-next-line no-unused-vars
+  let youLose = false // eslint error, it is being used 
   const levelScore = document.querySelector('.levelScore')
   let lives = 2
-  let keyPressed = false /* I plan to do something with this */
   let flashTheScreen = null
   let level = 1
   let loss = false
@@ -261,7 +255,6 @@ function init() {
       }  
     }
 
-    // ! If Homer eats the Super Donuts * DO NOT PUT IN FUNCION * Note to self: function circuit works better for this. 
     if (cells[homerPosition].classList.contains('superDonuts')) {
       aliens.forEach(alien => {
         alien.isScared = true
@@ -470,10 +463,6 @@ function init() {
       displayGameOver()
     }
 
-    // clearInterval(timerIdGoDown) //don't think i need these, but check //! confirmed 
-    // clearInterval(timerIdGoUp)
-    // clearInterval(timerIdTurnRight)
-    // clearInterval(timerIdTurnLeft)
   }
 
   function displayGameOver() {
