@@ -1,4 +1,4 @@
-# Project 1: Pacman (Homerman)
+# Project 1: Pac-man (Homerman)
 
 ## Index
 
@@ -18,9 +18,9 @@
 
 For the first project of the Software Engineering Course at General Assembly, we were tasked to make a game in just under one week using vanilla javascript: HTML, CSS and JavaScript. General Assembly gave us a list of games to choose from, and I chose the well-known, arcade game, Pac-Man. 
 
-In the original game, the player controls the character pac-man in an encolsed maze. The aim of the game is to consume all of the pellets in the maze whilst avoding the four coloured ghosts - Blinky, Pinky, Inky, and Clyde that try to capture him. Only when all the pellets are consumed does the player then advance to the next level. 
+In the original game, the player controls the character Pac-man in an encolsed maze. The aim of the game is to consume all of the pellets in the maze whilst avoding the four coloured ghosts - Blinky, Pinky, Inky, and Clyde that try to capture him. Only when all the pellets are consumed does the player then advance to the next level. 
 
-For the pac-man I created, I decided not to explicitly re-make the original, but re-create some of it using some of its concepts and reasoning. The theme of my game originates from the well-known cartoon, animation, The Simpsons. 
+For the Pac-man I created, I decided not to explicitly re-make the original, but re-create some of it using some of its concepts and reasoning. The theme of my game originates from the well-known cartoon, animation, The Simpsons. 
 
 ## Brief
 
@@ -41,7 +41,7 @@ For the pac-man I created, I decided not to explicitly re-make the original, but
 
 ## Winning
 
-Like the original pacman, the game goes on forever until the player eventually runs out of lives by being captured by the simpson villains. To progress from each level to level, a player must collect all the pink donuts of the level they are currently at. They will then progress to the next level. Each Level starts with the villains located in their lair, and homer in the starting position in the grid. As the player progresses from level to level the villains get faster. A player has two lives, a player cannot regain them. The score is located at the top left of the screen. The highest score is the highest score a player is able to obtain out of all the games he/she has played. 
+Like the original Pac-man, the game goes on forever until the player eventually runs out of lives by being captured by the simpson villains. To progress from each level to level, a player must collect all the pink donuts of the level they are currently at. They will then progress to the next level. Each Level starts with the villains located in their lair, and homer in the starting position in the grid. As the player progresses from level to level the villains get faster. A player has two lives, a player cannot regain them. The score is located at the top left of the screen. The highest score is the highest score a player is able to obtain out of all the games he/she has played. 
 
 ## Movement
 
@@ -161,7 +161,7 @@ For every level, a beer would appear randomly in 4 locations, consuming this bee
 
 ## Styling
 
-To break away from the original, I decided to theme this version of pacman simpson themed. All items, are in the Simpsons cartoons, the famous duff beer, pink and green donuts. The player's character is Homer simpson himself. The villains trying to capture Homer are the Simpson Villains: Mr Burns, Moe, Nelson, Sideshow Bob. The aliens, after Homer eats a green donut, also exist in the Simpsons. 
+To break away from the original, I decided to theme this version of Pac-man simpson themed. All items, are in the Simpsons cartoons, the famous duff beer, pink and green donuts. The player's character is Homer simpson himself. The villains trying to capture Homer are the Simpson Villains: Mr Burns, Moe, Nelson, Sideshow Bob. The aliens, after Homer eats a green donut, also exist in the Simpsons. 
 
 ## Villains 
 
@@ -171,7 +171,7 @@ To get in the scared state, Homer has to consume the green donut. The latter tur
 
 When the villians are not chasing, they are in a scatter state. They occupy and patrol the four corners of the grid, if they are not in chase-mode.
 
-Once Homer (Pac-Man) enters an area/zone that they are guarding, the villains go into "chase" mode, this is the mode where the villains chase pacman, given pacman's location. 
+Once Homer (Pac-Man) enters an area/zone that they are guarding, the villains go into "chase" mode, this is the mode where the villains chase Pac-man, given Pac-man's location. 
 
 When moving, the villains take into consideration the boundaries that they cannot infiltrate: The walls, each-other. This essentially stops them from colliding into each-other and going through obstacles they're not supposed to go through. 
 
@@ -192,6 +192,10 @@ Collision detection is not as complicated: it is a simple play on classes. If bo
 
 - Making sure the movement was a smooth as possible by using CSS animation, and player speed. 
 - I gained great experience playing around with time intervals. 
+
+# Play the game
+
+To play the game <a href="https://christhecybercoder.github.io/SEI-Project-1/ ">click here.</a>
 
 
 
