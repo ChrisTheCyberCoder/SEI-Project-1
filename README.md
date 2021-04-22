@@ -13,6 +13,7 @@
 * [The Villains](#villains)
 * [Collision Detection](#collision-detection)
 * [Conclusion](#conclusion)
+* [Play the game](#Play-the-game)
 
 ## Overview
 
